@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block page_title %}Tasks{% endblock %}
+{% block page_subtitle %}Manage and search your tasks{% endblock %}
+
+{% block header_action %}
+<a href="/tasks/create" class="btn btn-primary btn-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+    Create
+</a>
+{% endblock %}
+
+{% block content %}
+<!-- Filter Bar -->
+<form id="task-filters" class="flex items-center gap-3 mb-6">
+    <label class="input border-none shadow-sm flex-1 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-base-content/40"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" name="search" value="{{ search }}" placeholder="Search tasks..." class="grow border-none outline-none bg-transparent"
+            hx-get="/tasks" hx-trigger="input changed delay:300ms" hx-target="#task-table-body" hx-push-url="true" hx-include="closest form" />
+    </label>
+    <select name="status" class="select border-none shadow-sm w-auto"
+        hx-get="/tasks" hx-trigger="change" hx-target="#task-table-body" hx-push-url="true" hx-include="closest form">
+        <option value="">All Status</option>
+        <option value="Todo" {% if status == "Todo" %}selected{% endif %}>Todo</option>
+        <option value="InProgress" {% if status == "InProgress" %}selected{% endif %}>In Progress</option>
+        <option value="Done" {% if status == "Done" %}selected{% endif %}>Done</option>
+    </select>
+    <select name="priority" class="select border-none shadow-sm w-auto"
+        hx-get="/tasks" hx-trigger="change" hx-target="#task-table-body" hx-push-url="true" hx-include="closest form">
+        <option value="">All Priority</option>
+        <option value="High" {% if priority == "High" %}selected{% endif %}>High</option>
+        <option value="Medium" {% if priority == "Medium" %}selected{% endif %}>Medium</option>
+        <option value="Low" {% if priority == "Low" %}selected{% endif %}>Low</option>
+    </select>
+</form>
+
+<!-- Tasks Table -->
+<div class="card bg-base-100 shadow-sm">
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead>
+                <tr class="border-b border-base-200">
+                    <th class="text-xs font-medium text-base-content/50">Task Name</th>
+                    <th class="text-xs font-medium text-base-content/50">Status</th>
+                    <th class="text-xs font-medium text-base-content/50">Priority</th>
+                    <th class="text-xs font-medium text-base-content/50 w-12"></th>
+                </tr>
+            </thead>
+            <tbody id="task-table-body">
+                {% include "tasks_table_body.html" %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+[package]
+name = "rust-htmx-dashboard"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+askama = "0.15.4"
+axum = "0.8.8"
+tokio = { version = "1.50.0", features = ["full"] }
+tower-http = { version = "0.6.8", features = ["trace", "fs"] }
+tower-livereload = "0.10.3"
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "chrono"] }
+chrono = { version = "0.4", features = ["serde"] }
+dotenvy = "0.15"
+serde = { version = "1", features = ["derive"] }

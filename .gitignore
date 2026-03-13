@@ -1,0 +1,5 @@
+/target
+/public
+/node_modules
+.env
+/data

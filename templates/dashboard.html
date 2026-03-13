@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block page_title %}Dashboard{% endblock %}
+{% block page_subtitle %}Monitor your task progress{% endblock %}
+
+{% block content %}
+<!-- Metrics Cards -->
+<div class="grid grid-cols-4 gap-5 mb-8">
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body p-5">
+            <p class="text-sm text-base-content/60">Total Tasks</p>
+            <div class="flex items-baseline gap-2">
+                <p class="text-3xl font-bold text-base-content">{{ stats.total }}</p>
+                <p class="text-xs text-base-content/40">tasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body p-5">
+            <p class="text-sm text-base-content/60">In Progress</p>
+            <div class="flex items-baseline gap-2">
+                <p class="text-3xl font-bold text-status-progress-num">{{ stats.in_progress }}</p>
+                <p class="text-xs text-base-content/40">tasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body p-5">
+            <p class="text-sm text-base-content/60">Done</p>
+            <div class="flex items-baseline gap-2">
+                <p class="text-3xl font-bold text-status-done">{{ stats.done }}</p>
+                <p class="text-xs text-base-content/40">tasks</p>
+            </div>
+        </div>
+    </div>
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body p-5">
+            <p class="text-sm text-base-content/60">Todo</p>
+            <div class="flex items-baseline gap-2">
+                <p class="text-3xl font-bold text-status-todo-num">{{ stats.todo }}</p>
+                <p class="text-xs text-base-content/40">tasks</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Tasks Header -->
+<div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-semibold">Recent Tasks</h2>
+    <a href="/tasks" class="text-sm text-primary hover:underline">View All &rarr;</a>
+</div>
+
+<!-- Recent Tasks Table -->
+<div class="card bg-base-100 shadow-sm">
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead>
+                <tr class="border-b border-base-200">
+                    <th class="text-xs font-medium text-base-content/50">Task Name</th>
+                    <th class="text-xs font-medium text-base-content/50">Status</th>
+                    <th class="text-xs font-medium text-base-content/50">Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in recent_tasks %}
+                <tr>
+                    <td class="font-medium">{{ task.name }}</td>
+                    <td><span class="badge badge-sm bg-status-{{ task.status_class() }}-bg text-status-{{ task.status_class() }} border-none">{{ task.status_display() }}</span></td>
+                    <td><span class="badge badge-sm bg-priority-{{ task.priority_class() }}-bg text-priority-{{ task.priority_class() }} border-none">{{ task.priority }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block page_title %}Create New Task{% endblock %}
+{% block page_subtitle %}Fill in the details to create a new task{% endblock %}
+
+{% block header_action %}
+<a href="/tasks" class="btn btn-ghost btn-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    Back to List
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="card bg-base-100 shadow-sm rounded-xl">
+    <div class="card-body">
+        <form method="post" action="/tasks">
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text font-medium">Task Name</span>
+                </label>
+                <input type="text" name="name" placeholder="Enter task name..." class="input input-bordered w-full" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text font-medium">Status</span>
+                </label>
+                <select name="status" class="select select-bordered w-full" required>
+                    <option disabled selected value="">Select status...</option>
+                    <option value="Todo">Todo</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="Done">Done</option>
+                </select>
+            </div>
+
+            <div class="form-control mb-6">
+                <label class="label">
+                    <span class="label-text font-medium">Priority</span>
+                </label>
+                <select name="priority" class="select select-bordered w-full" required>
+                    <option disabled selected value="">Select priority...</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex justify-end gap-3">
+                <a href="/tasks" class="btn btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-primary">Create Task</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

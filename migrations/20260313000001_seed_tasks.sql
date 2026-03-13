@@ -1,0 +1,16 @@
+INSERT INTO tasks (name, status, priority) VALUES
+    ('Create API Design Doc', 'InProgress', 'High'),
+    ('Implement User Auth', 'InProgress', 'Medium'),
+    ('Write Test Cases', 'Done', 'Low'),
+    ('Build Deploy Pipeline', 'Todo', 'High'),
+    ('Design Database Schema', 'Done', 'Medium'),
+    ('Create Code Review Guidelines', 'InProgress', 'Low'),
+    ('Set Up Monitoring Dashboard', 'Todo', 'High'),
+    ('Refactor Payment Module', 'InProgress', 'High'),
+    ('Update README Documentation', 'Done', 'Low'),
+    ('Migrate to PostgreSQL', 'Todo', 'Medium'),
+    ('Add Rate Limiting', 'Todo', 'High'),
+    ('Fix Login Page CSS', 'Done', 'Low'),
+    ('Implement Notification System', 'Todo', 'Medium'),
+    ('Performance Load Testing', 'InProgress', 'Medium'),
+    ('Configure CI/CD Caching', 'Done', 'Low');

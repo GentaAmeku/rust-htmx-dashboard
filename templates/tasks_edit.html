@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block page_title %}Edit Task{% endblock %}
+{% block page_subtitle %}Update the task details below{% endblock %}
+
+{% block header_action %}
+<a href="/tasks" class="btn btn-ghost btn-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    Back to List
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="card bg-base-100 shadow-sm rounded-xl">
+    <div class="card-body">
+        <form method="post" action="/tasks/{{ task.id }}">
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text font-medium">Task Name</span>
+                </label>
+                <input type="text" name="name" value="{{ task.name }}" class="input input-bordered w-full" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text font-medium">Status</span>
+                </label>
+                <select name="status" class="select select-bordered w-full" required>
+                    <option value="Todo" {% if task.status == "Todo" %}selected{% endif %}>Todo</option>
+                    <option value="InProgress" {% if task.status == "InProgress" %}selected{% endif %}>In Progress</option>
+                    <option value="Done" {% if task.status == "Done" %}selected{% endif %}>Done</option>
+                </select>
+            </div>
+
+            <div class="form-control mb-6">
+                <label class="label">
+                    <span class="label-text font-medium">Priority</span>
+                </label>
+                <select name="priority" class="select select-bordered w-full" required>
+                    <option value="High" {% if task.priority == "High" %}selected{% endif %}>High</option>
+                    <option value="Medium" {% if task.priority == "Medium" %}selected{% endif %}>Medium</option>
+                    <option value="Low" {% if task.priority == "Low" %}selected{% endif %}>Low</option>
+                </select>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex justify-end gap-3">
+                <a href="/tasks" class="btn btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% for task in tasks %}
+<tr>
+    <td class="font-medium">{{ task.name }}</td>
+    <td><span class="badge badge-sm bg-status-{{ task.status_class() }}-bg text-status-{{ task.status_class() }} border-none">{{ task.status_display() }}</span></td>
+    <td><span class="badge badge-sm bg-priority-{{ task.priority_class() }}-bg text-priority-{{ task.priority_class() }} border-none">{{ task.priority }}</span></td>
+    <td>
+        <div class="dropdown dropdown-left">
+            <button tabindex="0" class="btn btn-ghost btn-xs btn-square">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-10 w-32 p-2 shadow">
+                <li><a href="/tasks/{{ task.id }}/edit">Edit</a></li>
+                <li><a hx-delete="/tasks/{{ task.id }}" hx-target="closest tr" hx-swap="outerHTML swap:0.3s" hx-confirm="このタスクを削除しますか？" class="text-error">Delete</a></li>
+            </ul>
+        </div>
+    </td>
+</tr>
+{% endfor %}
+{% if tasks.is_empty() %}
+<tr>
+    <td colspan="4" class="text-center py-8 text-base-content/50">タスクがありません。新しいタスクを作成してください。</td>
+</tr>
+{% endif %}

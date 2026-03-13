@@ -1,0 +1,5 @@
+/target
+/public
+/node_modules
+pnpm-lock.yaml
+templates/

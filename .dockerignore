@@ -1,0 +1,9 @@
+target/
+node_modules/
+public/
+data/
+.git/
+.vscode/
+.claude/
+design/
+.env
